@@ -1,15 +1,45 @@
 import json
 
+# Parsing json data from file today.json
 with open('today.json','r') as today:
     json_data = [json.loads(line) for line in today]
     format_today = json.dumps(json_data,indent=2)
     today_data = json.loads(format_today)
 
-
+# Parsing json data from file yesterday.json
 with open('yesterday.json','r') as yesterday:
     json_data = [json.loads(line) for line in yesterday]
     format_yesterday = json.dumps(json_data,indent=2)
     yesterday_data = json.loads(format_yesterday)
+
+# Main menu function
+def choose():
+    choice = 1
+    while choice != 6:
+
+        print("\n\n1. No. of overlapped URLH")
+        print("2. The price difference (wrt available_price) for all overlapped URLH if there is any between yesterday's and today's crawls")
+        print("3. No of Unique categories in both files.")
+        print("4. List of categories which is not overlapping.")
+        print("5. Generate the stats with count for all taxonomies.")
+        print("6. Exit\n\n")
+
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            overlappedUrlhCount()
+        elif choice == 2:
+            pdiff()
+        elif choice == 3:
+            UniqueCategoriesCount()
+        elif choice == 4:
+            CategoriesNotOverlapping()
+        elif choice == 5:
+            stats()
+        elif choice == 6:
+            exit
+        else:
+            print("Please enter valid choice.\n")
 
 
 def overlappedUrlhCount():
@@ -88,33 +118,7 @@ def CategoriesNotOverlapping():
 def stats():
     print("Generate Stats")
 
-def choose():
-    choice = 1
-    while choice != 6:
 
-        print("\n\n1. No. of overlapped URLH")
-        print("2. The price difference (wrt available_price) for all overlapped URLH if there is any between yesterday's and today's crawls")
-        print("3. No of Unique categories in both files.")
-        print("4. List of categories which is not overlapping.")
-        print("5. Generate the stats with count for all taxonomies.")
-        print("6. Exit\n\n")
-
-        choice = int(input("Enter your choice: "))
-
-        if choice == 1:
-            overlappedUrlhCount()
-        elif choice == 2:
-            pdiff()
-        elif choice == 3:
-            UniqueCategoriesCount()
-        elif choice == 4:
-            CategoriesNotOverlapping()
-        elif choice == 5:
-            stats()
-        elif choice == 6:
-            exit
-        else:
-            print("Please enter valid choice.\n")
 
 choose()
 #     print(data)
